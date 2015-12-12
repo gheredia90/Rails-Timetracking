@@ -1,0 +1,29 @@
+<h1>Welcome to Timetracking tool</h1>
+<h3>Projects</h3>
+
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<ul>
+  <% @projects.each do |project| %>
+    <li> 
+    <%="Id: #{project.id} - Name: #{project.name} "%>
+    
+    <% if project.description.present? %>
+      <%= "- Description: #{project.description}"%> </li>
+    <% else %>
+      <%="#{project.id}: {project.name}"%> 
+    <% end %>
+    <%= link_to("Entries", project_entries_path(project)) %>
+
+       <%= link_to("Delete", project, method: :delete) %>
+   <!-- Formas equilantes de hacer el link al project
+       link_to(Delete, project_path(project), method: :delete)      
+
+       link_to(Delete, "/projects/#{project.id}", method: :delete) 
+      -->
+    </li>
+  <% end %>
+
+</ul>

@@ -1,0 +1,11 @@
+<h3>Updating Entry</h3>
+<% if @errors.present? %>
+	<% @errors.each do |error| %>
+		<ul>
+			<li><%= error %></li>
+
+	 	</ul>
+	<% end %>
+<% end %>	
+
+<%= render 'form'%>

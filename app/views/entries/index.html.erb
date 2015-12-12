@@ -1,0 +1,25 @@
+<h1> Project: <%= @project.name %> </h1>
+
+<%= link_to("Projects", projects_path) %>
+<%= link_to("New Entry", new_project_entry_path(@project)) %>
+
+
+<% if flash[:notice] %>
+	<%= flash[:notice] %>
+<% end %>	
+<h2>Horas totales: <%=@project.total_hours_in_month(12, 2015)%></h2>
+<ul>
+  <% @entries.each do |entry| %>
+    <li> 
+      <%= "Id: #{entry.id} --> Hours: #{entry.hours}, minutes: #{entry.minutes}" %>
+      <%= link_to("Edit", edit_project_entry_path(@project, entry)) %>
+
+	  <%= link_to "Delete", project_entry_path(@project, entry), method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+
+
+      
+    </li>
+
+  <% end %>
+</ul>
